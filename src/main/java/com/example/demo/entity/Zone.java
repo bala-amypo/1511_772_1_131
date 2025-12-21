@@ -2,51 +2,39 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
-@Table(
-    name = "zones",
-    uniqueConstraints = @UniqueConstraint(columnNames = "zoneName")
-)
-@Getter
-@Setter
+@Getter @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Zone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String zoneName;
 
-    @Column(nullable = false)
     private Integer priorityLevel;
-
     private Integer population;
 
     @Builder.Default
-    @Column(nullable = false)
     private Boolean active = true;
 
-    @Column(updatable = false)
-    private Timestamp createdAt;
-
-    private Timestamp updatedAt;
+    private Instant createdAt;
+    private Instant updatedAt;
 
     @PrePersist
-    public void onCreate() {
-        Timestamp now = new Timestamp(System.currentTimeMillis());
-        this.createdAt = now;
-        this.updatedAt = now;
+    void onCreate() {
+        createdAt = Instant.now();
+        updatedAt = createdAt;
     }
 
     @PreUpdate
-    public void onUpdate() {
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+    void onUpdate() {
+        updatedAt = Instant.now();
     }
 }
