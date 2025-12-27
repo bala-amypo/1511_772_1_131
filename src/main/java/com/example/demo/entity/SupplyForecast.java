@@ -6,8 +6,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +17,8 @@ public class SupplyForecast {
     private Long id;
 
     private Double availableSupplyMW;
-
     private Instant forecastStart;
     private Instant forecastEnd;
-
     private Instant generatedAt;
 
     @PrePersist
