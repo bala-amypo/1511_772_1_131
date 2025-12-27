@@ -1,14 +1,12 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.DemandReading;
+import com.example.demo.entity.ZoneRestorationRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface DemandReadingRepository extends JpaRepository<DemandReading, Long> {
+public interface ZoneRestorationRecordRepository
+        extends JpaRepository<ZoneRestorationRecord, Long> {
 
-    Optional<DemandReading> findFirstByZoneIdOrderByRecordedAtDesc(Long zoneId);
-
-    List<DemandReading> findByZoneIdOrderByRecordedAtDesc(Long zoneId);
+    List<ZoneRestorationRecord> findByZoneIdOrderByRestoredAtDesc(Long zoneId);
 }
