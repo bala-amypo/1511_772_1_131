@@ -8,7 +8,7 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     private final String secret = "secret-key";
-    private final long validity = 3600000;
+    private final long validity = 3600000; // 1 hour
 
     public String createToken(AppUser user) {
         return Jwts.builder()
@@ -27,8 +27,14 @@ public class JwtTokenProvider {
     }
 
     public Claims getClaims(String token) {
-        return Jwts.parser().setSigningKey(secret)
+        return Jwts.parser()
+                .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    // ✅ ADD THIS METHOD (FIXES YOUR ERROR)
+    public String getUsernameFromToken(String token) {
+        return getClaims(token).getSubject();
     }
 }
