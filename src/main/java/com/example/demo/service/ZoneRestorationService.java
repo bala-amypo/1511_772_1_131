@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ZoneRestorationService {
 
-    ZoneRestorationRecord restoreZone(Long zoneId, Long eventId, String notes);
+    ZoneRestorationRecord restoreZone(ZoneRestorationRecord record);
 
     ZoneRestorationRecord getRecordById(Long id);
 
