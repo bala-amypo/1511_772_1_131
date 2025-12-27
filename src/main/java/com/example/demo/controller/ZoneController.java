@@ -10,41 +10,34 @@ import java.util.List;
 @RequestMapping("/api/zones")
 public class ZoneController {
 
-    private final ZoneService zoneService;
+    private final ZoneService service;
 
-    // Constructor injection
-    public ZoneController(ZoneService zoneService) {
-        this.zoneService = zoneService;
+    public ZoneController(ZoneService service) {
+        this.service = service;
     }
 
-    // Create Zone
     @PostMapping
-    public Zone createZone(@RequestBody Zone zone) {
-        return zoneService.createZone(zone);
+    public Zone create(@RequestBody Zone z) {
+        return service.createZone(z);
     }
 
-    // Update Zone
     @PutMapping("/{id}")
-    public Zone updateZone(@PathVariable Long id, @RequestBody Zone zone) {
-        return zoneService.updateZone(id, zone);
+    public Zone update(@PathVariable Long id, @RequestBody Zone z) {
+        return service.updateZone(id, z);
     }
 
-    // Get Zone by ID
     @GetMapping("/{id}")
-    public Zone getZoneById(@PathVariable Long id) {
-        return zoneService.getZoneById(id);
+    public Zone get(@PathVariable Long id) {
+        return service.getZoneById(id);
     }
 
-    // Get all Zones
     @GetMapping
-    public List<Zone> getAllZones() {
-        return zoneService.getAllZones();
+    public List<Zone> all() {
+        return service.getAllZones();
     }
 
-    // Deactivate Zone
     @PutMapping("/{id}/deactivate")
-    public String deactivateZone(@PathVariable Long id) {
-        zoneService.deactivateZone(id);
-        return "Zone deactivated successfully";
+    public void deactivate(@PathVariable Long id) {
+        service.deactivateZone(id);
     }
 }
