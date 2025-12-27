@@ -10,8 +10,6 @@ public interface SupplyForecastService {
 
     SupplyForecast updateForecast(Long id, SupplyForecast forecast);
 
-    SupplyForecast getForecastById(Long id);
-
     SupplyForecast getLatestForecast();
 
     List<SupplyForecast> getAllForecasts();
