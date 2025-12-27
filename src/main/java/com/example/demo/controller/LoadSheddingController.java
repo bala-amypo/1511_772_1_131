@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.LoadSheddingEvent;
-import com.example.demo.repository.LoadSheddingEventRepository;
 import com.example.demo.service.LoadSheddingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,36 +10,29 @@ import java.util.List;
 @RequestMapping("/api/load-shedding")
 public class LoadSheddingController {
 
-    private final LoadSheddingService loadSheddingService;
-    private final LoadSheddingEventRepository loadSheddingEventRepository;
+    private final LoadSheddingService service;
 
-    public LoadSheddingController(LoadSheddingService loadSheddingService,
-                                  LoadSheddingEventRepository loadSheddingEventRepository) {
-        this.loadSheddingService = loadSheddingService;
-        this.loadSheddingEventRepository = loadSheddingEventRepository;
+    public LoadSheddingController(LoadSheddingService service) {
+        this.service = service;
     }
 
-    // Trigger load shedding using forecastId
     @PostMapping("/trigger/{forecastId}")
-    public LoadSheddingEvent triggerLoadShedding(@PathVariable Long forecastId) {
-        return loadSheddingService.triggerLoadShedding(forecastId);
+    public LoadSheddingEvent trigger(@PathVariable Long forecastId) {
+        return service.triggerLoadShedding(forecastId);
     }
 
-    // Get events by zone
-    @GetMapping("/zone/{zoneId}")
-    public List<LoadSheddingEvent> getEventsByZone(@PathVariable Long zoneId) {
-        return loadSheddingEventRepository.findByZoneIdOrderByEventStartDesc(zoneId);
-    }
-
-    // Get event by ID
     @GetMapping("/{id}")
-    public LoadSheddingEvent getEventById(@PathVariable Long id) {
-        return loadSheddingEventRepository.findById(id).orElse(null);
+    public LoadSheddingEvent getById(@PathVariable Long id) {
+        return service.getEventById(id);
     }
 
-    // Get all events
+    @GetMapping("/zone/{zoneId}")
+    public List<LoadSheddingEvent> getForZone(@PathVariable Long zoneId) {
+        return service.getEventsForZone(zoneId);
+    }
+
     @GetMapping
-    public List<LoadSheddingEvent> getAllEvents() {
-        return loadSheddingEventRepository.findAll();
+    public List<LoadSheddingEvent> getAll() {
+        return service.getAllEvents();
     }
 }

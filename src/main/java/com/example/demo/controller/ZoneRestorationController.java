@@ -10,32 +10,26 @@ import java.util.List;
 @RequestMapping("/api/restorations")
 public class ZoneRestorationController {
 
-    private final ZoneRestorationService zoneRestorationService;
+    private final ZoneRestorationService service;
 
-    // Constructor injection
-    public ZoneRestorationController(ZoneRestorationService zoneRestorationService) {
-        this.zoneRestorationService = zoneRestorationService;
+    public ZoneRestorationController(ZoneRestorationService service) {
+        this.service = service;
     }
 
-    // Restore a zone
     @PostMapping
-    public ZoneRestorationRecord restoreZone(
-            @RequestParam Long zoneId,
-            @RequestParam Long eventId,
-            @RequestParam(required = false) String notes) {
-
-        return zoneRestorationService.restoreZone(zoneId, eventId, notes);
+    public ZoneRestorationRecord restore(
+            @RequestBody ZoneRestorationRecord record) {
+        return service.restoreZone(record);
     }
 
-    // Get restoration record by ID
     @GetMapping("/{id}")
-    public ZoneRestorationRecord getRecordById(@PathVariable Long id) {
-        return zoneRestorationService.getRecordById(id);
+    public ZoneRestorationRecord getById(@PathVariable Long id) {
+        return service.getRecordById(id);
     }
 
-    // Get restoration records for a zone
     @GetMapping("/zone/{zoneId}")
-    public List<ZoneRestorationRecord> getRecordsForZone(@PathVariable Long zoneId) {
-        return zoneRestorationService.getRecordsForZone(zoneId);
+    public List<ZoneRestorationRecord> getForZone(
+            @PathVariable Long zoneId) {
+        return service.getRecordsForZone(zoneId);
     }
 }
