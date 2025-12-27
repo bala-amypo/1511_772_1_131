@@ -6,8 +6,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,7 +31,8 @@ public class Zone {
     @PrePersist
     void onCreate() {
         createdAt = Instant.now();
-        updatedAt = createdAt;
+        updatedAt = Instant.now();
+        if (active == null) active = true;
     }
 
     @PreUpdate
