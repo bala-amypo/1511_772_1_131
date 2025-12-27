@@ -12,17 +12,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            // VERY IMPORTANT: Disable CSRF
+            // Disable CSRF for REST APIs
             .csrf(csrf -> csrf.disable())
 
-            // Disable default login & basic auth
+            // Disable default authentication mechanisms
             .formLogin(form -> form.disable())
             .httpBasic(basic -> basic.disable())
 
-            // Allow APIs and Swagger
+            // Authorization rules
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/",
+                    "/auth/**",
                     "/api/**",
                     "/swagger-ui/**",
                     "/v3/api-docs/**"
