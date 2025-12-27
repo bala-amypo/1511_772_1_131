@@ -6,8 +6,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,12 +17,9 @@ public class ZoneRestorationRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "zone_id")
     private Zone zone;
 
     private Instant restoredAt;
-
     private Long eventId;
-
     private String notes;
 }

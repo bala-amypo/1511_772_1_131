@@ -6,8 +6,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,15 +17,12 @@ public class LoadSheddingEvent {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "zone_id")
     private Zone zone;
 
     private Instant eventStart;
     private Instant eventEnd;
 
     private String reason;
-
     private Long triggeredByForecastId;
-
     private Double expectedDemandReductionMW;
 }
