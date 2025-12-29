@@ -14,12 +14,12 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
 
-        // Server localServer = new Server()
-                .url("https://localhost:8080")
+        Server localServer = new Server()
+                .url("http://localhost:8080")
                 .description("Local Development Server");
 
         Server deployedServer = new Server()
-                .url("https://9035.pro604cr.amypo.ai/")
+                .url("https://9035.pro604cr.amypo.ai")
                 .description("Deployed Server");
 
         return new OpenAPI()
@@ -28,6 +28,6 @@ public class SwaggerConfig {
                         .description("REST APIs for zone management, demand readings, supply forecasting, load shedding, and restoration")
                         .version("1.0.0")
                 )
-                .servers(List.of(localServer, deployedServer));
+                .servers(List.of(deployedServer, localServer));
     }
 }
