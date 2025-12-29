@@ -1,7 +1,10 @@
 package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import lombok.*;
+
+
 @Entity
+
 @Getter @Setter
 @Builder
 @NoArgsConstructor
