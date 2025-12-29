@@ -6,7 +6,9 @@ import com.example.demo.repository.*;
 import com.example.demo.service.ZoneRestorationService;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ZoneRestorationServiceImpl implements ZoneRestorationService {
 
     private final ZoneRestorationRecordRepository repo;

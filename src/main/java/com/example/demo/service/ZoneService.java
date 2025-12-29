@@ -3,7 +3,9 @@ package com.example.demo.service;
 import com.example.demo.entity.Zone;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface ZoneService {
 
     Zone createZone(Zone zone);

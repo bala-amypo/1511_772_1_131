@@ -6,7 +6,9 @@ import com.example.demo.repository.SupplyForecastRepository;
 import com.example.demo.service.SupplyForecastService;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SupplyForecastServiceImpl implements SupplyForecastService {
 
     private final SupplyForecastRepository repo;

@@ -7,7 +7,9 @@ import com.example.demo.service.LoadSheddingService;
 
 import java.time.Instant;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoadSheddingServiceImpl implements LoadSheddingService {
 
     private final SupplyForecastRepository forecastRepo;
